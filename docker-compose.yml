@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8000:80"
+    # depends_on:
+    #   - db
+    volumes:
+      - .:/var/www/html
+    
+  db:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: workopia
+      MYSQL_USER: Giga
+      MYSQL_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+  phpmyadmin:
+    # depends_on:
+    #   - db
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8001:80"
+    
