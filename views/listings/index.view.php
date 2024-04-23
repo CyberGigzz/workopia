@@ -1,7 +1,6 @@
 <?php
 loadPartial("head");
 loadPartial("navbar");
-loadPartial("showcase-search");
 loadPartial("top-banner");
 
 ?>
@@ -30,8 +29,7 @@ loadPartial("top-banner");
                             <span>Coding</span>
                         </li>
                     </ul>
-                    <a href="details.html"
-                        class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
+                    <a href="details.html" class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
                         Details
                     </a>
                 </div>
@@ -56,8 +54,7 @@ loadPartial("top-banner");
                             <span>Advertising</span>
                         </li>
                     </ul>
-                    <a href="details.html"
-                        class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
+                    <a href="details.html" class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
                         Details
                     </a>
                 </div>
@@ -82,8 +79,7 @@ loadPartial("top-banner");
                             <span>Programming</span>
                         </li>
                     </ul>
-                    <a href="details.html"
-                        class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
+                    <a href="details.html" class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
                         Details
                     </a>
                 </div>
@@ -108,8 +104,7 @@ loadPartial("top-banner");
                             <span>Statistics</span>
                         </li>
                     </ul>
-                    <a href="details.html"
-                        class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
+                    <a href="details.html" class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
                         Details
                     </a>
                 </div>
@@ -134,8 +129,7 @@ loadPartial("top-banner");
                             <span>Creative</span>
                         </li>
                     </ul>
-                    <a href="details.html"
-                        class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
+                    <a href="details.html" class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
                         Details
                     </a>
                 </div>
@@ -159,17 +153,13 @@ loadPartial("top-banner");
                             <span>Machine Learning</span>
                         </li>
                     </ul>
-                    <a href="details.html"
-                        class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
+                    <a href="details.html" class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
                         Details
                     </a>
                 </div>
             </div>
         </div>
-        <a href="/listings" class="block text-xl text-center">
-            <i class="fa fa-arrow-alt-circle-right"></i>
-            Show All Jobs
-        </a>
+
 </section>
 
 
