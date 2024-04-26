@@ -1,13 +1,17 @@
-version: '3'
+version: "3"
 services:
+
   web:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: workopia-web:1.0
     ports:
       - "8000:80"
     # depends_on:
     #   - db
     volumes:
-      - .:/var/www/html
+      - ../:/var/www/html
     
   db:
     image: mysql
@@ -16,6 +20,7 @@ services:
       MYSQL_USER: Giga
       MYSQL_PASSWORD: password
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      
   phpmyadmin:
     # depends_on:
     #   - db
