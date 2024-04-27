@@ -1,8 +1,6 @@
 <?php
-// phpinfo();
 
 require "../helpers.php";
-// xdebug_info();
 
 require basePath("Router.php");
 
