@@ -22,11 +22,17 @@ services:
     
   db:
     image: mysql
+    command: --default-authentication-plugin=caching_sha2_password
     environment:
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: workopia
       MYSQL_USER: Giga
       MYSQL_PASSWORD: password
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
       
   phpmyadmin:
     # depends_on:
@@ -34,4 +40,8 @@ services:
     image: phpmyadmin/phpmyadmin
     ports:
       - "8001:80"
+
+volumes:
+  mysql-data:
+    driver: local
     
