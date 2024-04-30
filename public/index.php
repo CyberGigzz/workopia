@@ -1,9 +1,18 @@
 <?php
 
 require "../helpers.php";
-require basePath("Framework/Database.php");
-require basePath("Framework/Router.php");
+// require __DIR__ . '/../vendor/autoload.php';
+// require_once __DIR__ . '/vendor/autoload.php';
+// require_once __DIR__ . '/../vendor/autoload.php';
 
+
+
+spl_autoload_register(function ($class) {
+    $path = basePath('Framework/' . $class . '.php');
+    if (file_exists($path)) {
+        require $path;
+    }
+});
 
 
 // Instatiate the router
