@@ -1,10 +1,20 @@
 <?php
 
+require __DIR__ . '/../vendor/autoload.php';
 require "../helpers.php";
 // require __DIR__ . '/../vendor/autoload.php';
 // require_once __DIR__ . '/vendor/autoload.php';
-// require_once __DIR__ . '/../vendor/autoload.php';
 
+use Framework\Router;
+use Framework\Database;
+
+
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require __DIR__ . '/../vendor/autoload.php';
+    echo 'autoload.php exists!';
+} else {
+    echo 'autoload.php does not exist.';
+}
 
 
 spl_autoload_register(function ($class) {

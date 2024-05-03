@@ -14,6 +14,30 @@ RUN apt-get update && \
     unzip \
     -y --no-install-recommends
 
+# allow super user - set this if you use Composer as a
+# super user at all times like in docker containers
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+# obtain composer using multi-stage build
+# https://docs.docker.com/build/building/multi-stage/
+COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+
+COPY ./composer.* .
+
+# install
+
+RUN composer install --prefer-dist --no-scripts --no-progress --no-interaction
+
+# run composer dump-autoload --optimize
+RUN composer dump-autoload --optimize
+
+# # Move the vendor folder to a temporary location
+# RUN mv /var/www/html/vendor /tmp/vendor
+
+# # Copy it back during container startup
+# CMD cp -r /tmp/vendor /var/www/html/
+
+
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
@@ -25,10 +49,6 @@ Options Indexes FollowSymLinks\n\
     Require all granted\n\
 </Directory>' >> /etc/apache2/apache2.conf
 
-
-# Install Xdebug
-RUN pecl install xdebug && docker-php-ext-enable xdebug
-
 WORKDIR /var/www/html
 
 COPY .. /var/www/html
@@ -36,11 +56,9 @@ COPY .. /var/www/html
 COPY ./php.ini /usr/local/etc/php
 
 
-# ENV COMPOSER_ALLOW_SUPERUSER=1
-# COPY --from=composer:2.4 /usr/bin/composer /usr/bin/composer
-# COPY ./composer.* ./
-# RUN composer install --prefer-dist --no-dev --no-scripts --no-progress --no-interaction
-# RUN composer dump-autoload --optimize
+# Install Xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

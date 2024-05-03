@@ -1,5 +1,5 @@
 {
-    "name": "bradtraversy/workopia-php",
+    "name": "cybergigzz/workopia",
     "description": "Job listing application",
     "authors": [
       {
@@ -9,8 +9,8 @@
     ],
     "autoload": {
       "psr-4": {
-        "Framework\\": "Framework/",
-        "App\\": "App/"
+        "Framework\\": "../Framework/",
+        "App\\": "../App/"
       }
     }
   }
