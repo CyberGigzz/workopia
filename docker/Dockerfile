@@ -14,14 +14,13 @@ RUN apt-get update && \
     unzip \
     -y --no-install-recommends
 
-# allow super user - set this if you use Composer as a
-# super user at all times like in docker containers
-ENV COMPOSER_ALLOW_SUPERUSER=1
-
 # obtain composer using multi-stage build
 # https://docs.docker.com/build/building/multi-stage/
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
-
+    
+# allow super user - set this if you use Composer as a
+# super user at all times like in docker containers
+ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY ./composer.* .
 
 # install
@@ -58,7 +57,6 @@ COPY ./php.ini /usr/local/etc/php
 
 # Install Xdebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug
-
 
 # Install Composer
 # RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

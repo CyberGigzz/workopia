@@ -1,10 +1,10 @@
 <?php
 
-namespace Framework;
+// namespace Framework;
 
-use PDO;
-use PDOException;
-use Exception;
+// use PDO;
+// use PDOException;
+// use Exception;
 
 class Database {
     public $conn;
