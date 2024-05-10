@@ -16,19 +16,19 @@ RUN apt-get update && \
 
 # obtain composer using multi-stage build
 # https://docs.docker.com/build/building/multi-stage/
-COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+# COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
     
 # allow super user - set this if you use Composer as a
 # super user at all times like in docker containers
-ENV COMPOSER_ALLOW_SUPERUSER=1
-COPY ./composer.* .
+# ENV COMPOSER_ALLOW_SUPERUSER=1
+# COPY ./composer.* .
 
 # install
 
-RUN composer install --prefer-dist --no-scripts --no-progress --no-interaction
+# RUN composer install --prefer-dist --no-scripts --no-progress --no-interaction
 
 # run composer dump-autoload --optimize
-RUN composer dump-autoload --optimize
+# RUN composer dump-autoload --optimize
 
 # # Move the vendor folder to a temporary location
 # RUN mv /var/www/html/vendor /tmp/vendor
