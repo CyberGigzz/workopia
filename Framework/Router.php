@@ -19,8 +19,7 @@ class Router {
      */
     public function registerRoute($method, $uri, $action) {
         list($controller, $controllerMethod) = explode("@", $action);
-        // inspect($controllerMethod);
-        // inspectAndDie($controller);
+
 
         $this->routes[] = [
             'method' => $method,
@@ -92,11 +91,9 @@ class Router {
 
             // Split the current URI into segments
             $uriSegments = explode('/', trim($uri, '/'));
-            inspect($uriSegments);
 
             // Split the route URI into segments
             $routeSegments = explode('/', trim($route['uri'], '/'));
-            inspect($routeSegments);
 
             $match = true;
 
@@ -104,7 +101,6 @@ class Router {
             if (count($uriSegments) === count($routeSegments) && strtoupper($route['method']) === strtoupper($requestMethod)) {
                 $params = [];
 
-                echo "hi";
                 $match = true;
 
                 for ($i = 0; $i < count($uriSegments); $i++) {
@@ -119,15 +115,19 @@ class Router {
                         $params[$matches[1]] = $uriSegments[$i];
                     }
                 }
+
+                if ($match) {
+                    $controller = 'App\\controllers\\' . $route["controller"];
+                    $controllerMethod = $route["controllerMethod"];
+                    $controllerInstance = new $controller();
+                    $controllerInstance->$controllerMethod($params);
+
+                    return;
+                }
             }
 
             // if ($route["uri"] === $uri && $route["method"] === $method) {
-            //     $controller = 'App\\controllers\\' . $route["controller"];
-            //     $controllerMethod = $route["controllerMethod"];
-            //     $controllerInstance = new $controller();
-            //     $controllerInstance->$controllerMethod();
 
-            //     return;
             // }
         }
         ErrorController::notFound();

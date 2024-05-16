@@ -3,6 +3,7 @@
 namespace App\controllers;
 
 use Framework\Database;
+use Framework\Validation;
 
 
 class ListingController {
@@ -17,7 +18,7 @@ class ListingController {
         $listings = $this->db->query("SELECT * FROM listings")->fetchAll();
 
 
-        loadView("home", [
+        loadView("listings/index", [
             "listings" => $listings
         ]);
     }
@@ -26,8 +27,8 @@ class ListingController {
         loadView("listings/create");
     }
 
-    public function show() {
-        $id = $_GET["id"] ?? "";
+    public function show($params) {
+        $id = $params["id"] ?? "";
 
         $params = [
             "id" => $id,
@@ -35,9 +36,32 @@ class ListingController {
 
         $listing = $this->db->query('SELECT * FROM listings WHERE id = :id', $params)->fetch();
 
+        // Check if listing exists
+        if (!$listing) {
+            ErrorController::notFound('Listing not found');
+            return;
+        }
+
 
         loadView("listings/show", [
             "listing" => $listing
         ]);
+    }
+
+    /**
+     * Store data in database
+     * 
+     * @return void
+     */
+    public function store() {
+        $allowedFields = ['title', 'description', 'salary', 'tags', 'company', 'address', 'city', 'state', 'phone', 'email', 'requirements', 'benefits'];
+
+        $newListingData = array_intersect_key($_POST, array_flip($allowedFields));
+
+        $newListingData['user_id'] = 1;
+
+        $newListingData = array_map("sanitize", $newListingData);
+
+        inspectAndDie($newListingData);
     }
 }
