@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require __DIR__ . '/../vendor/autoload.php';
 require "../helpers.php";
 
@@ -8,12 +9,7 @@ require "../helpers.php";
 use Framework\Router;
 // use Framework\Database;
 
-// spl_autoload_register(function ($class) {
-//     $path = basePath('Framework/' . $class . '.php');
-//     if (file_exists($path)) {
-//         require $path;
-//     }
-// });
+
 
 // Instatiate the router
 $router = new Router();
