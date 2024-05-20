@@ -30,12 +30,10 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY ./composer.* .
 
 # install
-
 RUN composer install --prefer-dist --no-scripts --no-progress --no-interaction
 
 # run composer dump-autoload --optimize
 RUN composer dump-autoload --optimize
-
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
