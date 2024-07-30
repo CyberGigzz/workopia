@@ -23,7 +23,7 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - mysql-data:/var/lib/mysql 
+      - workopia-mysql-data:/var/lib/mysql 
     restart: unless-stopped
       
   adminer:
@@ -35,6 +35,6 @@ services:
       - "8080:8080"    # Expose port 8080 for Adminer's web interface
 
 volumes:
-  mysql-data:
+  workopia-mysql-data:
     driver: local
     
