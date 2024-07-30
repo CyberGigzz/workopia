@@ -20,17 +20,19 @@ services:
       MYSQL_DATABASE: workopia
       MYSQL_USER: Giga
       MYSQL_PASSWORD: password
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
     ports:
       - "3307:3306"
     volumes:
       - mysql-data:/var/lib/mysql 
     restart: unless-stopped
       
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+  adminer:
+    image: adminer      # Use the official Adminer image
+    restart: always    # Restart the container if it stops
+    environment:
+      ADMINER_DESIGN: dracula # Pick a theme - https://github.com/vrana/adminer/tree/master/designs
     ports:
-      - "8001:80"
+      - "8080:8080"    # Expose port 8080 for Adminer's web interface
 
 volumes:
   mysql-data:
